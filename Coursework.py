@@ -1,6 +1,5 @@
 # Імпортуємо потрібні бібліотеки
 import pygame
-import sys
 import random
 
 # Ініціалізуємо pygame
@@ -92,7 +91,6 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x, y = event.pos
             x, y = x//cell_w, y//cell_h
