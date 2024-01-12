@@ -1,5 +1,6 @@
 # Імпортуємо потрібні бібліотеки
 import pygame
+import sys
 import random
 
 # Ініціалізуємо pygame
@@ -79,7 +80,7 @@ dragging = False
 pressed = False
 DragValue = False
 fill_random = False
-color_options = [(0, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255)]
+color_options = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 255)]
 color_index = 0
 
 # Створюємо годинник для регулювання FPS
@@ -91,6 +92,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x, y = event.pos
             x, y = x//cell_w, y//cell_h
@@ -107,10 +109,10 @@ while True:
                 desk = refresh(desk)
             elif event.key == pygame.K_f:
                 dragging = not dragging
-            elif event.key == pygame.K_r:  # Натисніть 'r', щоб змінити режим заповнення
+            elif event.key == pygame.K_r:  
                 fill_random = not fill_random
                 desk = create_new_desk(desk_w, desk_h, fill_random=fill_random)
-            elif event.key == pygame.K_c:  # Натисніть 'c', щоб змінити колір
+            elif event.key == pygame.K_c:  
                 color_index = (color_index + 1) % len(color_options)
                 fill_c = color_options[color_index]
     if dragging and pressed:
